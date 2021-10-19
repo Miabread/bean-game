@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Bolt;
+using UdpKit;
 
 [BoltGlobalBehaviour]
 public class NetworkCallbacks : GlobalEventListener
@@ -11,8 +12,8 @@ public class NetworkCallbacks : GlobalEventListener
         BoltNetwork.Instantiate(BoltPrefabs.Player, new Vector3(0, 0, 0), Quaternion.identity);
     }
 
-    public override void Disconnected(BoltConnection connection)
+    public override void BoltShutdownBegin(AddCallback registerDoneCallback, UdpConnectionDisconnectReason disconnectReason)
     {
-        Cursor.lockState = CursorLockMode.None;
+        Application.Quit();
     }
 }

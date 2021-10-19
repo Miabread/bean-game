@@ -24,7 +24,7 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
             Cursor.lockState = CursorLockMode.Locked;
 
             state.Name = PlayerPrefs.GetString("name", "Player Name");
-            state.Color = new Color(Random.value, Random.value, Random.value);
+            state.Color = Color.HSVToRGB(Random.value, 1.0f, 0.5f);
         }
 
         state.AddCallback("Name", NameChanged);

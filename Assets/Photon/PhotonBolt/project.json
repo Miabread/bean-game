@@ -15,6 +15,7 @@
             "$type": "Photon.Bolt.Compiler.PropertyTypeTransform, bolt.compiler",
             "PositionSelection": 14,
             "RotationSelection": 14,
+            "ExtrapolationVelocityMode": 3,
             "PositionCompression": [
               {
                 "MinValue": -1024,
@@ -79,6 +80,7 @@
           },
           "AssetSettings": {
             "$type": "Photon.Bolt.Compiler.PropertyStateSettings, bolt.compiler",
+            "SmoothingAlgorithm": 1,
             "ExtrapolationErrorTolerance": 0.25,
             "_ExtrapolationCorrectionFrames": 6,
             "ExtrapolationMaxFrames": 9,

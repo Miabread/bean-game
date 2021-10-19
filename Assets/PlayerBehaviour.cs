@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Photon.Bolt;
 using TMPro;
+using System;
+using System.Linq;
 
 public class PlayerBehaviour : EntityBehaviour<IPlayerState>
 {
@@ -32,7 +34,7 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
             Cursor.lockState = CursorLockMode.Locked;
 
             state.Name = PlayerPrefs.GetString("name", "Player Name");
-            state.Color = Color.HSVToRGB(Random.value, 1.0f, 0.5f);
+            state.Color = Color.HSVToRGB(UnityEngine.Random.value, 1.0f, 0.5f);
         }
 
         state.AddCallback("Name", NameChanged);
@@ -108,24 +110,35 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
 
     void OnGUI()
     {
-        if (entity.IsOwner)
-        {
-            var debug = "";
+        if (!entity.IsOwner) return;
 
-            debug += "Nme \"" + state.Name + "\"\n";
-            debug += "Col " + (Vector3)(Vector4)state.Color + "\n";
-            debug += "Pos " + transform.position + "\n";
-            debug += "Vel " + velocity + "\n";
+        var style = new GUIStyle(GUI.skin.box);
+        style.alignment = TextAnchor.UpperLeft;
 
-            if (isGrounded) debug += "Grd ";
-            if (isJumping) debug += "Jmp ";
+        GUI.backgroundColor = Color.black;
+        GUI.color = Color.white;
+        GUILayout.Box(debug(), style);
+    }
 
-            var style = new GUIStyle(GUI.skin.box);
-            style.alignment = TextAnchor.UpperLeft;
+    private string debug()
+    {
+        var flagsDefs = new[] {
+            (isGrounded, "Grd"),
+            (isJumping, "Jmp")
+        };
 
-            GUI.backgroundColor = Color.black;
-            GUI.color = Color.white;
-            GUILayout.Box(debug, style);
-        }
+        return String.Join(
+            Environment.NewLine,
+            $"Nam \"{state.Name}\" ",
+            $"Col {(Vector3)(Vector4)state.Color}",
+            $"Pos {transform.position}",
+            $"Vel {velocity}",
+            String.Join(
+                " ",
+                from flag in flagsDefs
+                where flag.Item1
+                select flag.Item2
+            )
+        );
     }
 }

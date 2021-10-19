@@ -10,4 +10,9 @@ public class NetworkCallbacks : GlobalEventListener
     {
         BoltNetwork.Instantiate(BoltPrefabs.Player, new Vector3(0, 0, 0), Quaternion.identity);
     }
+
+    public override void Disconnected(BoltConnection connection)
+    {
+        Cursor.lockState = CursorLockMode.None;
+    }
 }

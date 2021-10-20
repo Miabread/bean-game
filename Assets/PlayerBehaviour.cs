@@ -38,7 +38,7 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
             Cursor.lockState = CursorLockMode.Locked;
 
             state.Name = PlayerPrefs.GetString("name", "Player Name");
-            state.Color = Color.HSVToRGB(UnityEngine.Random.value, 1.0f, 0.5f);
+            OnColorChange();
         }
 
         state.AddCallback("Name", NameChanged);
@@ -116,6 +116,11 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
         transform.rotation = spawnRotation;
         velocity = Vector3.zero;
         Physics.SyncTransforms();
+    }
+
+    public void OnColorChange()
+    {
+        state.Color = Color.HSVToRGB(UnityEngine.Random.value, 1.0f, 0.5f);
     }
 
     void NameChanged()

@@ -9,6 +9,9 @@ using System.Linq;
 
 public class PlayerBehaviour : EntityBehaviour<IPlayerState>
 {
+    public static Vector3 spawnPosition = new Vector3(0, 1, 0);
+    public static Quaternion spawnRotation = Quaternion.identity;
+
     public Camera firstPersonCamera;
     public CharacterController character;
     public TMP_Text nameplate;
@@ -105,6 +108,14 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
     {
         isPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
+    }
+
+    public void OnRespawn()
+    {
+        transform.position = spawnPosition;
+        transform.rotation = spawnRotation;
+        velocity = Vector3.zero;
+        Physics.SyncTransforms();
     }
 
     void NameChanged()

@@ -217,6 +217,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 7b52cceb-7a5b-4c59-8f21-9b81bed81fc8
     m_ActionName: Movement/Refocus[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6582591899306127614}
+        m_TargetAssemblyTypeName: PlayerBehaviour, Assembly-CSharp
+        m_MethodName: OnRespawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a1f2f25a-26d3-480f-9d42-da9fdcc49970
+    m_ActionName: Movement/Respawn[/Keyboard/r]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movement

@@ -14,6 +14,7 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
     public TMP_Text nameplate;
     public Transform groundCheck;
     public LayerMask groundMask;
+
     public float moveSpeed;
     public float gravity;
     public float groundDistance;
@@ -59,7 +60,6 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
         if (isJumping && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            Debug.Log("jumping");
         }
 
         character.Move(
@@ -76,25 +76,35 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
     private Vector2 walkVector;
     public void OnWalk(InputAction.CallbackContext context)
     {
+        if (isPaused) return;
         walkVector = context.ReadValue<Vector2>();
     }
 
     private Vector2 lookVector;
     public void OnLook(InputAction.CallbackContext context)
     {
+        if (isPaused) return;
         lookVector = context.ReadValue<Vector2>();
     }
 
     private bool isJumping;
     public void OnJump(InputAction.CallbackContext context)
     {
+        if (isPaused) return;
         isJumping = context.ReadValue<float>() != 0;
-        Debug.Log(velocity);
     }
 
-    public void OnQuit()
+    private bool isPaused;
+    public void OnPause()
     {
-        Application.Quit();
+        isPaused = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void OnUnpause()
+    {
+        isPaused = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void NameChanged()
@@ -123,14 +133,15 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
     private string debug()
     {
         var flagsDefs = new[] {
-            (isGrounded, "Grd"),
-            (isJumping, "Jmp")
+            (isPaused, "Pause"),
+            (isGrounded, "Ground"),
+            (isJumping, "Jump")
         };
 
         return String.Join(
             Environment.NewLine,
-            $"Nam \"{state.Name}\" ",
-            $"Col {(Vector3)(Vector4)state.Color}",
+            $"Name \"{state.Name}\" ",
+            $"Color {(Vector3)(Vector4)state.Color}",
             $"Pos {transform.position}",
             $"Vel {velocity}",
             String.Join(

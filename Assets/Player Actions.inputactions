@@ -6,6 +6,22 @@
             "id": "bae152e8-29f7-41ef-ab92-466fce70ac99",
             "actions": [
                 {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "eca9a041-79eb-43eb-b523-de4e8bfff3d9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Unpause",
+                    "type": "Button",
+                    "id": "7b52cceb-7a5b-4c59-8f21-9b81bed81fc8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Walk",
                     "type": "Button",
                     "id": "e09fd258-d7f9-43d8-997e-be38e809a1c8",
@@ -18,14 +34,6 @@
                     "type": "Value",
                     "id": "80fd69a6-31d9-40b9-ae5c-49d85795d697",
                     "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Quit",
-                    "type": "Button",
-                    "id": "eca9a041-79eb-43eb-b523-de4e8bfff3d9",
-                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
@@ -107,23 +115,34 @@
                 },
                 {
                     "name": "",
-                    "id": "4705c954-e442-4243-a474-ac7d5cbfbcae",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Quit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "d90aca05-29b2-412a-a695-3abb834be98d",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4705c954-e442-4243-a474-ac7d5cbfbcae",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ce54a10e-6bb6-4ad3-8055-96697eec9545",
+                    "path": "<Mouse>/press",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Unpause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

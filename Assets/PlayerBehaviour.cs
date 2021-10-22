@@ -18,6 +18,7 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
     public Transform groundCheck;
     public LayerMask groundMask;
     public GameObject faceBox;
+    public BoxCollider hitbox;
 
     public float moveSpeed;
     public float gravity;
@@ -39,7 +40,7 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
             Cursor.lockState = CursorLockMode.Locked;
 
             state.Name = PlayerPrefs.GetString("name", "Player Name");
-            state.IsTagged = true;
+            state.IsTagged = false;
             ChangeColor();
         }
 
@@ -82,6 +83,15 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
 
         firstPersonCamera.transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
         transform.Rotate(Vector3.up * lookVector.x * lookSpeed);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        var player = collision.gameObject.GetComponent<PlayerBehaviour>();
+        if (player && state.IsTagged)
+        {
+            player.state.IsTagged = true;
+        }
     }
 
     private Vector2 walkVector;

@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 2505281960879261008}
   - component: {fileID: 4773490183346817416}
   - component: {fileID: 6563124892586026214}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,6 +91,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   faceBox: {fileID: 6285690041309686069}
+  hitbox: {fileID: 0}
   moveSpeed: 10
   gravity: -9.81
   groundDistance: 0.4
@@ -558,7 +559,6 @@ GameObject:
   - component: {fileID: 9114161265293107239}
   - component: {fileID: 5680055704397309119}
   - component: {fileID: 4278717021578193829}
-  - component: {fileID: 8606603815639802719}
   m_Layer: 0
   m_Name: Face Box
   m_TagString: Untagged
@@ -607,7 +607,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d68791689e5cf1a4d90fce51f6505333, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -629,19 +629,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8606603815639802719
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6285690041309686069}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7861610029436171043
 GameObject:
   m_ObjectHideFlags: 0

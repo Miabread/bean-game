@@ -17,6 +17,7 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
     public TMP_Text nameplate;
     public Transform groundCheck;
     public LayerMask groundMask;
+    public GameObject faceBox;
 
     public float moveSpeed;
     public float gravity;
@@ -38,11 +39,13 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
             Cursor.lockState = CursorLockMode.Locked;
 
             state.Name = PlayerPrefs.GetString("name", "Player Name");
+            state.IsTagged = true;
             ChangeColor();
         }
 
         state.AddCallback("Name", NameChanged);
         state.AddCallback("Color", ColorChanged);
+        state.AddCallback("IsTagged", TagChanged);
     }
 
     public void ChangeColor()
@@ -105,7 +108,7 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
     private bool isPaused;
     public void OnPause(InputAction.CallbackContext context)
     {
-        if (context.ReadValue<float>() == 0) return;
+        if (!context.performed) return;
 
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
@@ -113,7 +116,7 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
 
     public void OnUnpause(InputAction.CallbackContext context)
     {
-        if (context.ReadValue<float>() == 0) return;
+        if (!context.performed) return;
 
         isPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -121,7 +124,7 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
 
     public void OnRespawn(InputAction.CallbackContext context)
     {
-        if (context.ReadValue<float>() == 0) return;
+        if (!context.performed) return;
 
         transform.position = spawnPosition;
         transform.rotation = spawnRotation;
@@ -131,9 +134,16 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
 
     public void OnColorChange(InputAction.CallbackContext context)
     {
-        if (context.ReadValue<float>() == 0) return;
+        if (!context.performed) return;
 
         ChangeColor();
+    }
+
+    public void OnToggleTag(InputAction.CallbackContext context)
+    {
+        if (!context.performed) return;
+
+        state.IsTagged = !state.IsTagged;
     }
 
     void NameChanged()
@@ -145,6 +155,11 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
     {
         GetComponent<Renderer>().material.color = state.Color;
         nameplate.color = state.Color;
+    }
+
+    void TagChanged()
+    {
+        faceBox.SetActive(state.IsTagged);
     }
 
     void OnGUI()
@@ -164,7 +179,8 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
         var flagsDefs = new[] {
             (isPaused, "Pause"),
             (isGrounded, "Ground"),
-            (isJumping, "Jump")
+            (isJumping, "Jump"),
+            (state.IsTagged, "Tag")
         };
 
         return String.Join(

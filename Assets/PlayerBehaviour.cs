@@ -7,7 +7,7 @@ using TMPro;
 using System;
 using System.Linq;
 
-public class PlayerBehaviour : EntityBehaviour<IPlayerState>
+public class PlayerBehaviour : EntityEventListener<IPlayerState>
 {
     public static Vector3 spawnPosition = new Vector3(0, 1, 0);
     public static Quaternion spawnRotation = Quaternion.identity;
@@ -39,6 +39,7 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
             firstPersonCamera.gameObject.SetActive(true);
             Cursor.lockState = CursorLockMode.Locked;
 
+            state.Id = System.Guid.NewGuid();
             state.Name = PlayerPrefs.GetString("name", "Player Name");
             state.IsTagged = false;
             ChangeColor();
@@ -85,12 +86,20 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
         transform.Rotate(Vector3.up * lookVector.x * lookSpeed);
     }
 
+    public override void OnEvent(TagEvent evnt)
+    {
+        if (evnt.TargetId != state.Id) return;
+        state.IsTagged = true;
+    }
+
     void OnCollisionEnter(Collision collision)
     {
         var player = collision.gameObject.GetComponent<PlayerBehaviour>();
         if (player && state.IsTagged)
         {
-            player.state.IsTagged = true;
+            var evnt = TagEvent.Create();
+            evnt.TargetId = player.state.Id;
+            evnt.Send();
         }
     }
 

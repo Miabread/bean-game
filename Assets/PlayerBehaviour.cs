@@ -38,11 +38,16 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
             Cursor.lockState = CursorLockMode.Locked;
 
             state.Name = PlayerPrefs.GetString("name", "Player Name");
-            OnColorChange();
+            ChangeColor();
         }
 
         state.AddCallback("Name", NameChanged);
         state.AddCallback("Color", ColorChanged);
+    }
+
+    public void ChangeColor()
+    {
+        state.Color = Color.HSVToRGB(UnityEngine.Random.value, 1.0f, 0.5f);
     }
 
     public override void SimulateOwner()
@@ -118,9 +123,12 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
         Physics.SyncTransforms();
     }
 
-    public void OnColorChange()
+    public void OnColorChange(InputAction.CallbackContext context)
     {
-        state.Color = Color.HSVToRGB(UnityEngine.Random.value, 1.0f, 0.5f);
+        if (context.ReadValue<float>() != 0)
+        {
+            ChangeColor();
+        }
     }
 
     void NameChanged()

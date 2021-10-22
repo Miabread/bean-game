@@ -103,20 +103,26 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
     }
 
     private bool isPaused;
-    public void OnPause()
+    public void OnPause(InputAction.CallbackContext context)
     {
+        if (context.ReadValue<float>() == 0) return;
+
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
     }
 
-    public void OnUnpause()
+    public void OnUnpause(InputAction.CallbackContext context)
     {
+        if (context.ReadValue<float>() == 0) return;
+
         isPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    public void OnRespawn()
+    public void OnRespawn(InputAction.CallbackContext context)
     {
+        if (context.ReadValue<float>() == 0) return;
+
         transform.position = spawnPosition;
         transform.rotation = spawnRotation;
         velocity = Vector3.zero;
@@ -125,10 +131,9 @@ public class PlayerBehaviour : EntityBehaviour<IPlayerState>
 
     public void OnColorChange(InputAction.CallbackContext context)
     {
-        if (context.ReadValue<float>() != 0)
-        {
-            ChangeColor();
-        }
+        if (context.ReadValue<float>() == 0) return;
+
+        ChangeColor();
     }
 
     void NameChanged()

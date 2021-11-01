@@ -139,23 +139,6 @@
             "ExtrapolationMaxFrames": 9,
             "SnapMagnitude": 10.0
           }
-        },
-        {
-          "Name": "Id",
-          "Enabled": true,
-          "Expanded": true,
-          "ReplicationMode": 1,
-          "Priority": 1,
-          "PropertyType": {
-            "$type": "Photon.Bolt.Compiler.PropertyTypeGuid, bolt.compiler"
-          },
-          "AssetSettings": {
-            "$type": "Photon.Bolt.Compiler.PropertyStateSettings, bolt.compiler",
-            "ExtrapolationErrorTolerance": 0.25,
-            "_ExtrapolationCorrectionFrames": 6,
-            "ExtrapolationMaxFrames": 9,
-            "SnapMagnitude": 10.0
-          }
         }
       ],
       "PacketMaxBits": 512,
@@ -231,20 +214,7 @@
     },
     {
       "$type": "Photon.Bolt.Compiler.EventDefinition, bolt.compiler",
-      "Properties": [
-        {
-          "Name": "TargetId",
-          "Enabled": true,
-          "ReplicationMode": 1,
-          "Priority": 1,
-          "PropertyType": {
-            "$type": "Photon.Bolt.Compiler.PropertyTypeGuid, bolt.compiler"
-          },
-          "AssetSettings": {
-            "$type": "Photon.Bolt.Compiler.PropertyEventSettings, bolt.compiler"
-          }
-        }
-      ],
+      "Properties": [],
       "Name": "TagEvent",
       "Guid": "79133de8-7487-4f1e-82a4-434cd5e5fe3c",
       "Groups": []

@@ -39,7 +39,6 @@ public class PlayerBehaviour : EntityEventListener<IPlayerState>
             firstPersonCamera.gameObject.SetActive(true);
             Cursor.lockState = CursorLockMode.Locked;
 
-            state.Id = System.Guid.NewGuid();
             state.Name = PlayerPrefs.GetString("name", "Player Name");
             state.IsTagged = false;
             ChangeColor();
@@ -86,48 +85,36 @@ public class PlayerBehaviour : EntityEventListener<IPlayerState>
         transform.Rotate(Vector3.up * lookVector.x * lookSpeed);
     }
 
-    public override void OnEvent(TagEvent evnt)
+    public override void OnEvent(TagEvent _)
     {
-        if (evnt.TargetId != state.Id) return;
         state.IsTagged = true;
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        var player = collision.gameObject.GetComponent<PlayerBehaviour>();
-        if (player && state.IsTagged)
-        {
-            var evnt = TagEvent.Create();
-            evnt.TargetId = player.state.Id;
-            evnt.Send();
-        }
     }
 
     private Vector2 walkVector;
     public void OnWalk(InputAction.CallbackContext context)
     {
-        if (isPaused) return;
+        if (isPaused || !entity.IsOwner) return;
         walkVector = context.ReadValue<Vector2>();
     }
 
     private Vector2 lookVector;
     public void OnLook(InputAction.CallbackContext context)
     {
-        if (isPaused) return;
+        if (isPaused || !entity.IsOwner) return;
         lookVector = context.ReadValue<Vector2>();
     }
 
     private bool isJumping;
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (isPaused) return;
+        if (isPaused || !entity.IsOwner) return;
         isJumping = context.ReadValue<float>() != 0;
     }
 
     private bool isPaused;
     public void OnPause(InputAction.CallbackContext context)
     {
-        if (!context.performed) return;
+        if (!context.performed || !entity.IsOwner) return;
 
         isPaused = true;
         Cursor.lockState = CursorLockMode.None;
@@ -135,7 +122,7 @@ public class PlayerBehaviour : EntityEventListener<IPlayerState>
 
     public void OnUnpause(InputAction.CallbackContext context)
     {
-        if (!context.performed) return;
+        if (!context.performed || !entity.IsOwner) return;
 
         isPaused = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -143,7 +130,7 @@ public class PlayerBehaviour : EntityEventListener<IPlayerState>
 
     public void OnRespawn(InputAction.CallbackContext context)
     {
-        if (!context.performed) return;
+        if (!context.performed || !entity.IsOwner) return;
 
         transform.position = spawnPosition;
         transform.rotation = spawnRotation;
@@ -153,14 +140,14 @@ public class PlayerBehaviour : EntityEventListener<IPlayerState>
 
     public void OnColorChange(InputAction.CallbackContext context)
     {
-        if (!context.performed) return;
+        if (!context.performed || !entity.IsOwner) return;
 
         ChangeColor();
     }
 
     public void OnToggleTag(InputAction.CallbackContext context)
     {
-        if (!context.performed) return;
+        if (!context.performed || !entity.IsOwner) return;
 
         state.IsTagged = !state.IsTagged;
     }

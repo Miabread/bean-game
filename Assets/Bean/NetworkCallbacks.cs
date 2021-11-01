@@ -9,7 +9,7 @@ public class NetworkCallbacks : GlobalEventListener
 {
     public override void SceneLoadLocalDone(string scene, IProtocolToken token)
     {
-        BoltNetwork.Instantiate(BoltPrefabs.Player, PlayerBehaviour.spawnPosition, PlayerBehaviour.spawnRotation);
+        BoltNetwork.Instantiate(BoltPrefabs.Player, Player.spawnPosition, Player.spawnRotation);
     }
 
     public override void BoltShutdownBegin(AddCallback registerDoneCallback, UdpConnectionDisconnectReason disconnectReason)

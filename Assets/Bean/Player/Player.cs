@@ -7,7 +7,7 @@ using TMPro;
 using System;
 using System.Linq;
 
-public class PlayerBehaviour : EntityEventListener<IPlayerState>
+public class Player : EntityEventListener<IPlayerState>
 {
     public static Vector3 spawnPosition = new Vector3(0, 1, 0);
     public static Quaternion spawnRotation = Quaternion.identity;

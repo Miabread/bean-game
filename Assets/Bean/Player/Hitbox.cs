@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class Hitbox : MonoBehaviour
 {
-    public PlayerBehaviour playerBehaviour;
+    public Player playerBehaviour;
 
     void OnTriggerEnter(Collider collision)
     {
-        var other = collision.gameObject.GetComponent<PlayerBehaviour>();
+        var other = collision.gameObject.GetComponent<Player>();
 
         if (!other || !playerBehaviour.state.IsTagged) return;
 

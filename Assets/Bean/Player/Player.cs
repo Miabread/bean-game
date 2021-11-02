@@ -184,16 +184,18 @@ public class Player : EntityEventListener<IPlayerState>
     private string debug()
     {
         var flagsDefs = new[] {
+            (BoltNetwork.IsServer, "Host"),
             (isPaused, "Pause"),
+            (state.IsTagged, "Tag"),
             (isGrounded, "Ground"),
-            (isJumping, "Jump"),
-            (state.IsTagged, "Tag")
+            (isJumping, "Jump")
         };
 
         return String.Join(
             Environment.NewLine,
             $"Name \"{state.Name}\" ",
             $"Color {(Vector3)(Vector4)state.Color}",
+            $"FPS {(int)(1.0f / Time.smoothDeltaTime)}",
             $"Pos {transform.position}",
             $"Vel {velocity}",
             String.Join(

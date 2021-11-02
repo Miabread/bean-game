@@ -1,3 +1,8 @@
+## 21w44c
+
+- Add crude FPS counter to debug display
+- Add "is the host" flag to debug display
+
 ## 21w44b
 
 - Added event log display

@@ -93,22 +93,25 @@ public class Player : EntityEventListener<IPlayerState>
     private Vector2 walkVector;
     public void OnWalk(InputAction.CallbackContext context)
     {
-        if (isPaused || !entity.IsOwner) return;
-        walkVector = context.ReadValue<Vector2>();
+        if (!entity.IsOwner) return;
+
+        walkVector = isPaused ? Vector2.zero : context.ReadValue<Vector2>();
     }
 
     private Vector2 lookVector;
     public void OnLook(InputAction.CallbackContext context)
     {
-        if (isPaused || !entity.IsOwner) return;
-        lookVector = context.ReadValue<Vector2>();
+        if (!entity.IsOwner) return;
+
+        lookVector = isPaused ? Vector2.zero : context.ReadValue<Vector2>();
     }
 
     private bool isJumping;
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (isPaused || !entity.IsOwner) return;
-        isJumping = context.ReadValue<float>() != 0;
+        if (!entity.IsOwner) return;
+
+        isJumping = isPaused ? false : context.ReadValue<float>() != 0;
     }
 
     private bool isPaused;
@@ -130,7 +133,7 @@ public class Player : EntityEventListener<IPlayerState>
 
     public void OnRespawn(InputAction.CallbackContext context)
     {
-        if (!context.performed || !entity.IsOwner) return;
+        if (!context.performed || !entity.IsOwner || isPaused) return;
 
         transform.position = spawnPosition;
         transform.rotation = spawnRotation;
@@ -140,14 +143,14 @@ public class Player : EntityEventListener<IPlayerState>
 
     public void OnColorChange(InputAction.CallbackContext context)
     {
-        if (!context.performed || !entity.IsOwner) return;
+        if (!context.performed || !entity.IsOwner || isPaused) return;
 
         ChangeColor();
     }
 
     public void OnToggleTag(InputAction.CallbackContext context)
     {
-        if (!context.performed || !entity.IsOwner) return;
+        if (!context.performed || !entity.IsOwner || isPaused) return;
 
         state.IsTagged = !state.IsTagged;
     }

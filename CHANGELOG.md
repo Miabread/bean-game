@@ -2,6 +2,7 @@
 
 - Added crude FPS counter to debug display
 - Added is-host flag to debug display
+- Added a length limit to player names (16 characters)
 - Fixed input persisting during pause if held (e.g. hold jump; pause; would still jump)
 
 ## 21w44b

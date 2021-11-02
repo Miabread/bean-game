@@ -39,7 +39,7 @@ public class Player : EntityEventListener<IPlayerState>
             firstPersonCamera.gameObject.SetActive(true);
             Cursor.lockState = CursorLockMode.Locked;
 
-            state.Name = PlayerPrefs.GetString("name", "Player Name");
+            state.Name = PlayerInfo.SavedName;
             state.IsTagged = false;
             ChangeColor();
         }

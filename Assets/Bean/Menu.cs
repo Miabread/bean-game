@@ -11,12 +11,12 @@ public class Menu : GlobalEventListener
 
     private void Start()
     {
-        playerName.text = PlayerPrefs.GetString("name", "Player Name");
+        playerName.text = PlayerInfo.SavedName;
     }
 
     public void OnValueChanged(string name)
     {
-        PlayerPrefs.SetString("name", name);
+        PlayerInfo.SavedName = name;
     }
 
     public void Join()
@@ -53,7 +53,7 @@ public class Menu : GlobalEventListener
             if (photonSession.Source == UdpSessionSource.Photon)
             {
                 var playerInfo = new PlayerInfo();
-                playerInfo.name = PlayerPrefs.GetString("name", "Player Name");
+                playerInfo.name = PlayerInfo.SavedName;
 
                 BoltMatchmaking.JoinSession(photonSession, playerInfo);
             }

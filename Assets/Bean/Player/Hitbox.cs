@@ -5,14 +5,16 @@ using UnityEngine;
 
 public class Hitbox : MonoBehaviour
 {
-    public Player playerBehaviour;
+    public Player player;
 
     void OnTriggerEnter(Collider collision)
     {
         var other = collision.gameObject.GetComponent<Player>();
 
-        if (!other || !playerBehaviour.state.IsTagged) return;
+        if (!other || !player.state.IsTagged || other.state.IsTagged) return;
 
-        TagEvent.Create(other.entity).Send();
+        var evnt = TagEvent.Create(other.entity);
+        evnt.TaggerName = player.state.Name;
+        evnt.Send();
     }
 }

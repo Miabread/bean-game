@@ -85,9 +85,15 @@ public class Player : EntityEventListener<IPlayerState>
         transform.Rotate(Vector3.up * lookVector.x * lookSpeed);
     }
 
-    public override void OnEvent(TagEvent _)
+    public override void OnEvent(TagEvent evnt)
     {
+        if (!entity.IsOwner || state.IsTagged) return;
+
         state.IsTagged = true;
+
+        var log = LogEvent.Create();
+        log.Message = $"{evnt.TaggerName} tagged {state.Name}";
+        log.Send();
     }
 
     private Vector2 walkVector;

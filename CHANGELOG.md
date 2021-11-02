@@ -1,7 +1,8 @@
 ## 21w44c
 
-- Add crude FPS counter to debug display
-- Add "is the host" flag to debug display
+- Added crude FPS counter to debug display
+- Added is-host flag to debug display
+- Fixed input persisting during pause if held (e.g. hold jump; pause; would still jump)
 
 ## 21w44b
 

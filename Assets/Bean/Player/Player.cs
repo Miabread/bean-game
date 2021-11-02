@@ -127,6 +127,10 @@ public class Player : EntityEventListener<IPlayerState>
 
         isPaused = !isPaused;
         Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
+
+        walkVector = Vector2.zero;
+        lookVector = Vector2.zero;
+        isJumping = false;
     }
 
     public void OnRespawn(InputAction.CallbackContext context)

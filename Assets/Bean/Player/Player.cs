@@ -9,7 +9,7 @@ using System.Linq;
 
 public class Player : EntityEventListener<IPlayerState>
 {
-    public static Vector3 spawnPosition = new Vector3(0, 1, 0);
+    public static Vector3 spawnPosition = new Vector3(0, 5, 0);
     public static Quaternion spawnRotation = Quaternion.identity;
 
     public Camera firstPersonCamera;

@@ -1,5 +1,6 @@
 ## 21w44c
 
+- Added first map (no lighting or textures yet though)
 - Added crude FPS counter to debug display
 - Added is-host flag to debug display
 - Added a length limit to player names (16 characters)

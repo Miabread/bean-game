@@ -119,16 +119,8 @@ public class Player : EntityEventListener<IPlayerState>
     {
         if (!context.performed || !entity.IsOwner) return;
 
-        isPaused = true;
-        Cursor.lockState = CursorLockMode.None;
-    }
-
-    public void OnUnpause(InputAction.CallbackContext context)
-    {
-        if (!context.performed || !entity.IsOwner) return;
-
-        isPaused = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        isPaused = !isPaused;
+        Cursor.lockState = isPaused ? CursorLockMode.None : CursorLockMode.Locked;
     }
 
     public void OnRespawn(InputAction.CallbackContext context)

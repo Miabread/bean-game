@@ -14,14 +14,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Unpause",
-                    "type": "Button",
-                    "id": "7b52cceb-7a5b-4c59-8f21-9b81bed81fc8",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Walk",
                     "type": "Button",
                     "id": "e09fd258-d7f9-43d8-997e-be38e809a1c8",
@@ -156,17 +148,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ce54a10e-6bb6-4ad3-8055-96697eec9545",
-                    "path": "<Mouse>/press",
-                    "interactions": "Press",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Unpause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

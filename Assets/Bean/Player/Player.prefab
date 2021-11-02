@@ -40,8 +40,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6362677453177672451}
   - component: {fileID: 6582591899306127614}
-  - component: {fileID: 354511983788349995}
   - component: {fileID: 3608142988920649559}
+  - component: {fileID: 354511983788349995}
   - component: {fileID: 4922074569294934402}
   - component: {fileID: 2505281960879261008}
   - component: {fileID: 4773490183346817416}
@@ -99,24 +99,6 @@ MonoBehaviour:
   groundDistance: 0.4
   jumpHeight: 5
   lookSpeed: 0.3
---- !u!143 &354511983788349995
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2179376538108033091}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3608142988920649559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,22 +192,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6582591899306127614}
         m_TargetAssemblyTypeName: PlayerBehaviour, Assembly-CSharp
-        m_MethodName: OnUnpause
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 7b52cceb-7a5b-4c59-8f21-9b81bed81fc8
-    m_ActionName: Movement/Refocus[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6582591899306127614}
-        m_TargetAssemblyTypeName: PlayerBehaviour, Assembly-CSharp
         m_MethodName: OnRespawn
         m_Mode: 0
         m_Arguments:
@@ -275,6 +241,24 @@ MonoBehaviour:
   m_DefaultActionMap: Movement
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!143 &354511983788349995
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2179376538108033091}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4922074569294934402
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78fbc0581ff51f4e8be9c96d0aaff79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstPersonCamera: {fileID: 0}
+  firstPersonCamera: {fileID: 4057910268643901677}
   character: {fileID: 354511983788349995}
   nameplate: {fileID: 3710509552070060091}
   groundCheck: {fileID: 629078230945340672}
@@ -494,7 +494,6 @@ GameObject:
   - component: {fileID: 3981489149859301120}
   - component: {fileID: 4057910268643901677}
   - component: {fileID: 264220778989839252}
-  - component: {fileID: 6090029013490448195}
   m_Layer: 0
   m_Name: First Person Camera
   m_TagString: Untagged
@@ -567,18 +566,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3589342245677681214}
   m_Enabled: 1
---- !u!114 &6090029013490448195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3589342245677681214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05228728ec4edea43a4f12116b83ef89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6285690041309686069
 GameObject:
   m_ObjectHideFlags: 0

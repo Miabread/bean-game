@@ -52,7 +52,10 @@ public class Menu : GlobalEventListener
 
             if (photonSession.Source == UdpSessionSource.Photon)
             {
-                BoltMatchmaking.JoinSession(photonSession);
+                var playerInfo = new PlayerInfo();
+                playerInfo.name = PlayerPrefs.GetString("name", "Player Name");
+
+                BoltMatchmaking.JoinSession(photonSession, playerInfo);
             }
         }
     }
